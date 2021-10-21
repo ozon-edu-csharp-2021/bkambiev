@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{7DF7AAC3-78E1-4EF1-A5D9-62F219803350}"
+ProjectSection(SolutionItems) = preProject
+	.gitignore = .gitignore
+	README.md = README.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F282C41-1453-4D5D-B53C-8549B0A186EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{918F2858-ECE5-40E9-9D25-C6570BC707AB}"
+ProjectSection(SolutionItems) = preProject
+	docker-compose.yml = docker-compose.yml
+	dockerfile = dockerfile
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9A495A75-A4D9-4FB4-A99A-830E5BC5CF26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseService", "src\MerchandiseService\MerchandiseService.csproj", "{4E61B80E-2020-485A-A03E-EA714307C514}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E61B80E-2020-485A-A03E-EA714307C514} = {3F282C41-1453-4D5D-B53C-8549B0A186EE}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E61B80E-2020-485A-A03E-EA714307C514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E61B80E-2020-485A-A03E-EA714307C514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E61B80E-2020-485A-A03E-EA714307C514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E61B80E-2020-485A-A03E-EA714307C514}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
