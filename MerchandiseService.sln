@@ -4,14 +4,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{7DF7AA
 ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	README.md = README.md
+	dockerfile = dockerfile
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F282C41-1453-4D5D-B53C-8549B0A186EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{918F2858-ECE5-40E9-9D25-C6570BC707AB}"
 ProjectSection(SolutionItems) = preProject
-	docker-compose.yml = docker-compose.yml
-	dockerfile = dockerfile
+	deploy\docker-compose.yml = deploy\docker-compose.yml
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9A495A75-A4D9-4FB4-A99A-830E5BC5CF26}"
