@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MerchandiseService.GrpcServices;
+using MerchandiseService.Infrastructure.Interceptors;
 using MerchandiseService.Infrastructure.Middlewares;
 using MerchandiseService.Services;
 using MerchandiseService.Services.Interfaces;
@@ -21,7 +22,7 @@ namespace MerchandiseService
         {
             services.AddSingleton<IMerchandiseBusinessService, MerchandiseBusinessService>();
             services.AddControllers();
-            services.AddGrpc();
+            services.AddGrpc(options => options.Interceptors.Add<LoggingInterceptor>());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

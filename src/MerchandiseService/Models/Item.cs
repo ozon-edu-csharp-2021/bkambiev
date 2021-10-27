@@ -4,14 +4,14 @@ namespace MerchandiseService.Models
 {
     public class Item
     {
-        public long ItemId { get; }
+        public long Id { get; }
 
-        public string ItemName { get; }
+        public string Name { get; }
 
-        public Item(long itemId, string itemName)
+        public Item(long Id, string Name)
         {
-            ItemId = itemId;
-            ItemName = itemName;
+            this.Id = Id;
+            this.Name = Name;
         }
     }
 }

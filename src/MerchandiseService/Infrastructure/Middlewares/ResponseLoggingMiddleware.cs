@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -19,11 +20,11 @@ namespace MerchandiseService.Infrastructure.Middlewares
         
         public async Task InvokeAsync(HttpContext context)
         {
-            await LogResponse(context);
+            await LogResponseAsync(context);
             await _next(context);
         }
 
-        private async Task LogResponse(HttpContext context)
+        private async Task LogResponseAsync(HttpContext context)
         {
             await Task.Run(() =>
             {
@@ -32,14 +33,13 @@ namespace MerchandiseService.Infrastructure.Middlewares
                     _logger.LogInformation("Response logged");
                     _logger.LogInformation($"route: {context.Request.Path}");
                     
-                    if (context.Response.Headers.ContentLength > 0)
+                    if (context.Response.Headers.Count > 0)
                     {
-                        var headers = context.Response.Headers.ToDictionary(hKey => hKey.Key, hValue => hValue.Value);
-                        
-                        foreach (var header in headers)
+                        if (context.Request.Headers["Content-Type"] == "application/grpc")
                         {
-                            _logger.LogInformation($"header: {header.Key} value: {header.Value}");
+                            return;
                         }
+                        _logger.LogInformation(JsonSerializer.Serialize(context.Response.Headers));
                     }
                     
                 }

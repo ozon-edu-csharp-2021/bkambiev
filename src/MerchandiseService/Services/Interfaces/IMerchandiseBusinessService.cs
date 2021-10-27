@@ -6,8 +6,8 @@ namespace MerchandiseService.Services.Interfaces
 {
     public interface IMerchandiseBusinessService
     {
-        Task<MerchType> GetEmployeeMerchInfo(long employeeId, CancellationToken token);
+        Task<MerchType> GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token);
 
-        Task<bool> GetMerch(long employeeId, long merchType, CancellationToken token);
+        Task<bool> GetMerchAsync(long employeeId, long merchType, CancellationToken token);
     }
 }

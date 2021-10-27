@@ -22,17 +22,24 @@ namespace MerchandiseService.Controllers
         }
 
         [HttpGet("{employeeId:long}")]
-        public async Task<IActionResult>GetEmployeeMerchInfo(long employeeId, CancellationToken token)
+        public async Task<IActionResult>GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token)
         {
-            var merchInfo = _merchandiseBusinessService.GetEmployeeMerchInfo(employeeId, token);
-            throw new NotImplementedException();
+            try
+            {
+                var merchInfo = await _merchandiseBusinessService.GetEmployeeMerchInfoAsync(employeeId, token);
+                return Ok(merchInfo);
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet("{employeeId:long}/{merchType:long}")]
-        public async Task<IActionResult> GetMerch(long employeeId, long merchType, CancellationToken token)
+        public async Task<IActionResult> GetMerchAsync(long employeeId, long merchType, CancellationToken token)
         {
-            var result = _merchandiseBusinessService.GetMerch(employeeId, merchType, token); 
-            throw new NotImplementedException();
+            var result = await _merchandiseBusinessService.GetMerchAsync(employeeId, merchType, token); 
+            return Ok(result);
         }
     }
 }

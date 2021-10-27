@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -21,11 +22,11 @@ namespace MerchandiseService.Infrastructure.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            await LogRequest(context);
+            await LogRequestAsync(context);
             await _next(context);
         }
 
-        private async Task LogRequest(HttpContext context)
+        private async Task LogRequestAsync(HttpContext context)
         {
             await Task.Run(() =>
             {
@@ -34,16 +35,14 @@ namespace MerchandiseService.Infrastructure.Middlewares
                     _logger.LogInformation("Request logged");
                     _logger.LogInformation($"route: {context.Request.Path}");
                     
-                    if (context.Request.Headers.ContentLength > 0)
+                    if (context.Request.Headers.Count > 0)
                     {
-                        var headers = context.Request.Headers.ToDictionary(hKey => hKey.Key, hValue => hValue.Value);
-                        
-                        foreach (var header in headers)
+                        if (context.Request.Headers["Content-Type"] == "application/grpc")
                         {
-                            _logger.LogInformation($"header: {header.Key} value: {header.Value}");
+                            return;
                         }
+                        _logger.LogInformation(JsonSerializer.Serialize(context.Request.Headers));
                     }
-                    
                 }
                 catch (Exception e)
                 {

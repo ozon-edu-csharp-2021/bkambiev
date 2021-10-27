@@ -5,5 +5,11 @@ namespace MerchandiseService.HttpModels
         public long ItemId { get; set; }
 
         public string ItemName { get; set; }
+
+        public ItemResponse(long itemId, string itemName)
+        {
+            ItemId = itemId;
+            ItemName = itemName;
+        }
     }
 }

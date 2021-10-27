@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
@@ -8,9 +9,9 @@ namespace MerchandiseService.HttpClients
 {
     public interface IMerchandiseHttpClient
     {
-        Task<ItemResponse> GetEmployeeMerchInfo(long employeeId, CancellationToken token);
+        Task<ItemResponse> GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token);
 
-        Task<ItemResponse> GetMerch(long employeeId, long merchType, CancellationToken token);
+        Task<bool> GetMerchAsync(long employeeId, long merchType, CancellationToken token);
 
     }
     
@@ -23,18 +24,25 @@ namespace MerchandiseService.HttpClients
             _httpClient = httpClient;
         }
 
-        public async Task<ItemResponse> GetEmployeeMerchInfo(long employeeId, CancellationToken token)
+        public async Task<ItemResponse> GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token)
         {
-            using var response = await _httpClient.GetAsync($"v1/api/merchs/{employeeId}", token);
-            var body = await response.Content.ReadAsStringAsync(token);
-            return JsonSerializer.Deserialize<ItemResponse>(body);
+            return await ResponeHandler<ItemResponse>($"v1/api/merchs/{employeeId}", token);
         }
         
-        public async Task<ItemResponse> GetMerch(long employeeId, long merchType, CancellationToken token)
+        public async Task<bool> GetMerchAsync(long employeeId, long merchType, CancellationToken token)
         {
-            using var response = await _httpClient.GetAsync($"v1/api/merchs/{employeeId}/{merchType}", token);
-            var body = await response.Content.ReadAsStringAsync(token);
-            return JsonSerializer.Deserialize<ItemResponse>(body);
+            return await ResponeHandler<bool>($"v1/api/merchs/{employeeId}/{merchType}", token);
+        }
+
+        private async Task<T> ResponeHandler<T>(string endpoint, CancellationToken token)
+        {
+            using var response = await _httpClient.GetAsync(endpoint, token);
+            if (response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync(token);
+                return JsonSerializer.Deserialize<T>(body);
+            }
+            throw new HttpRequestException(response.StatusCode.ToString());
         }
     }
 }

@@ -5,11 +5,11 @@ namespace MerchandiseService.Models
     public class ItemCreationModel
     {
 
-        public string ItemName { get; set; }
+        public string Name { get; set; }
         
-        public ItemCreationModel(string itemName)
+        public ItemCreationModel(string Name)
         {
-            ItemName = itemName;
+            this.Name = Name;
         }
     }
 }

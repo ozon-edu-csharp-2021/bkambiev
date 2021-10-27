@@ -8,12 +8,12 @@ namespace MerchandiseService.Services
    
     public class MerchandiseBusinessService : IMerchandiseBusinessService 
     {
-        public Task<MerchType> GetEmployeeMerchInfo(long employeeId, CancellationToken token)
+        public Task<MerchType> GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> GetMerch(long employeeId, long merchType, CancellationToken token)
+        public Task<bool> GetMerchAsync(long employeeId, long merchType, CancellationToken token)
         {
             throw new System.NotImplementedException();
         }
