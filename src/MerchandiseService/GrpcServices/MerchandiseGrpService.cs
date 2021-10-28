@@ -14,7 +14,7 @@ namespace MerchandiseService.GrpcServices
             _merchandiseBusinessService = merchandiseBusinessService;
         }
 
-        public override async Task<GetEmployeeMerchInfoResponse> GetEmployeeMerchInfoAsync(GetEmployeeMerchInfoRequest request, ServerCallContext context)
+        public override async Task<GetEmployeeMerchInfoResponse> GetEmployeeMerchInfo(GetEmployeeMerchInfoRequest request, ServerCallContext context)
         {
             var merchInfo = await
                 _merchandiseBusinessService.GetEmployeeMerchInfoAsync(request.EmployeeId, context.CancellationToken);
@@ -24,7 +24,7 @@ namespace MerchandiseService.GrpcServices
             };
         }
 
-        public override async Task<GetMerchResponse> GetMerchAsync(GetMerchRequest request, ServerCallContext context)
+        public override async Task<GetMerchResponse> GetMerch(GetMerchRequest request, ServerCallContext context)
         {
             var resultGetMerch = await
                 _merchandiseBusinessService.GetMerchAsync(request.EmployeeId, request.MerchType, context.CancellationToken);

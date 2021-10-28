@@ -4,8 +4,8 @@ package Merchandise;
 
 service MerchandiseGrpc {
   
-  rpc GetEmployeeMerchInfoAsync(GetEmployeeMerchInfoRequest) returns (GetEmployeeMerchInfoResponse);
-  rpc GetMerchAsync(GetMerchRequest) returns (GetMerchResponse);
+  rpc GetEmployeeMerchInfo(GetEmployeeMerchInfoRequest) returns (GetEmployeeMerchInfoResponse);
+  rpc GetMerch(GetMerchRequest) returns (GetMerchResponse);
   
 }
 
