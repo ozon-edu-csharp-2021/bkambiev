@@ -31,7 +31,7 @@ namespace MerchandiseService.Controllers
             }
             catch (Exception e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
         }
 

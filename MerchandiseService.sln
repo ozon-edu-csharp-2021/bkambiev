@@ -4,7 +4,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{7DF7AA
 ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	README.md = README.md
-	src\MerchandiseService\dockerfile = src\MerchandiseService\dockerfile
+	dockerfile = dockerfile
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F282C41-1453-4D5D-B53C-8549B0A186EE}"
