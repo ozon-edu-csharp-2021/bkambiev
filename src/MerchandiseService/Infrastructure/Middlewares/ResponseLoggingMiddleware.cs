@@ -46,6 +46,7 @@ namespace MerchandiseService.Infrastructure.Middlewares
                 catch (Exception e)
                 {
                     _logger.LogError(e, "Could not log response");
+                    throw;
                 }
             });
         }

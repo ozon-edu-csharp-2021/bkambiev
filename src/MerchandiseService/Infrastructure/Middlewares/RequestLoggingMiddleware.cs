@@ -46,7 +46,8 @@ namespace MerchandiseService.Infrastructure.Middlewares
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e, "Could not log request");
+                    _logger.LogError(0, e, "Could not log request");
+                    throw;
                 }
             });
         }
