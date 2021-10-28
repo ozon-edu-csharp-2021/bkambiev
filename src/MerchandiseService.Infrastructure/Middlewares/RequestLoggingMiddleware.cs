@@ -1,10 +1,7 @@
 using System;
-using System.Globalization;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 
 namespace MerchandiseService.Infrastructure.Middlewares
