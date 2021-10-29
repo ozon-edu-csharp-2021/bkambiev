@@ -2,14 +2,14 @@ namespace MerchandiseService.HttpModels
 {
     public class ItemResponse
     {
-        public long ItemId { get; set; }
+        public long Id { get; set; }
 
-        public string ItemName { get; set; }
+        public string Name { get; set; }
 
-        public ItemResponse(long itemId, string itemName)
+        public ItemResponse(long Id, string Name)
         {
-            ItemId = itemId;
-            ItemName = itemName;
+            this.Id = Id;
+            this.Name = Name;
         }
     }
 }
