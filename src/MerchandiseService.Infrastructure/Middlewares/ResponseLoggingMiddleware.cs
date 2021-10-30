@@ -29,18 +29,10 @@ namespace MerchandiseService.Infrastructure.Middlewares
             {
                 try
                 {
-                    _logger.LogInformation("Response logged");
-                    _logger.LogInformation($"route: {context.Request.Path}");
-                    
-                    if (context.Response.Headers.Count > 0)
+                    if ((context.Response.Headers.Count > 0) && (context.Response.Headers["Content-Type"] != "application/grpc"))
                     {
-                        if (context.Request.Headers["Content-Type"] == "application/grpc")
-                        {
-                            return;
-                        }
-                        _logger.LogInformation(JsonSerializer.Serialize(context.Response.Headers));
+                        _logger.LogInformation($"Response logged. Route: {context.Request.Path} Headers: {JsonSerializer.Serialize(context.Response.Headers)}");
                     }
-                    
                 }
                 catch (Exception e)
                 {

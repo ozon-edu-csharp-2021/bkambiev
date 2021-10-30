@@ -20,13 +20,11 @@ namespace MerchandiseService.Infrastructure.Interceptors
             UnaryServerMethod<TRequest, TResponse> continuation)
         {
             var requestJson = JsonSerializer.Serialize(request);
-            _logger.LogInformation(requestJson);
             
             var response = base.UnaryServerHandler(request, context, continuation);
 
             var responseJson = JsonSerializer.Serialize(response);
-            _logger.LogInformation(responseJson);
-            
+            _logger.LogInformation($"Grpc log. Request: {requestJson} Response: {responseJson}");
             return response;
         }
     }
