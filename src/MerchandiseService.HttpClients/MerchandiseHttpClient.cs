@@ -42,7 +42,9 @@ namespace MerchandiseService.HttpClients
                 var body = await response.Content.ReadAsStringAsync(token);
                 return JsonSerializer.Deserialize<T>(body);
             }
-            throw new HttpRequestException(response.StatusCode.ToString());
+            throw new HttpRequestException($"Status Code:{response.StatusCode.ToString()}" +
+                                           $" ResponsePhrase: {response.ReasonPhrase}" +
+                                           $" Request: {response.RequestMessage}");
         }
     }
 }

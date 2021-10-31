@@ -24,15 +24,8 @@ namespace MerchandiseService.Controllers
         [HttpGet("{employeeId:long}")]
         public async Task<IActionResult>GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token)
         {
-            try
-            {
-                var merchInfo = await _merchandiseBusinessService.GetEmployeeMerchInfoAsync(employeeId, token);
-                return Ok(merchInfo);
-            }
-            catch (Exception e)
-            {
-                return NotFound(e.Message);
-            }
+            var merchInfo = await _merchandiseBusinessService.GetEmployeeMerchInfoAsync(employeeId, token);
+            return Ok(merchInfo);
         }
 
         [HttpGet("{employeeId:long}/{merchType:long}")]

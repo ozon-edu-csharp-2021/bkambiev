@@ -29,7 +29,7 @@ namespace MerchandiseService.Infrastructure.Middlewares
             {
                 try
                 {
-                    if ((context.Response.Headers.Count > 0) && (context.Response.Headers["Content-Type"] != "application/grpc"))
+                    if ((context.Response.Headers.Count > 0) && (context.Request.ContentType != "application/grpc"))
                     {
                         _logger.LogInformation($"Response logged. Route: {context.Request.Path} Headers: {JsonSerializer.Serialize(context.Response.Headers)}");
                     }
