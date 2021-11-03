@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MerchandiseService.Domain.Models;
 
-namespace MerchandiseService.Domain.AggregationModels.StockItemAggregate
+namespace MerchandiseService.Domain.AggregationModels.MerchItemAggregate
 {
     public class Tag : ValueObject
     {
