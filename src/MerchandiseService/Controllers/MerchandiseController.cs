@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using CSharpCourse.Core.Lib.Enums;
+using MediatR;
+using MerchandiseService.Infrastructure.Commands;
 using MerchandiseService.Models;
 using MerchandiseService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -15,16 +17,19 @@ namespace MerchandiseService.Controllers
     public class MerchandiseController : ControllerBase
     {
         private readonly IMerchandiseBusinessService _merchandiseBusinessService;
+        private readonly IMediator _mediator;
 
-        public MerchandiseController(IMerchandiseBusinessService merchandiseBusinessService)
+        public MerchandiseController(IMerchandiseBusinessService merchandiseBusinessService, IMediator mediator)
         {
             _merchandiseBusinessService = merchandiseBusinessService;
+            _mediator = mediator;
         }
 
         [HttpGet("{employeeId:long}")]
-        public async Task<IActionResult>GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token)
+        public async Task<IActionResult>GetEmployeeMerchInfoAsync(int employeeId, CancellationToken token)
         {
-            var merchInfo = await _merchandiseBusinessService.GetEmployeeMerchInfoAsync(employeeId, token);
+            var command = new EmployeeMerchPackInfoCommand(employeeId);
+            var merchInfo = await _mediator.Send(command);
             return Ok(merchInfo);
         }
 

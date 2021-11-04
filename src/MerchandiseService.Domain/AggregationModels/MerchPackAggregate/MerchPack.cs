@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CSharpCourse.Core.Lib.Enums;
 using MerchandiseService.Domain.AggregationModels.MerchItemAggregate;
 using MerchandiseService.Domain.Models;
 
@@ -8,9 +9,12 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackAggregate
     {
         public List<MerchItem> Pack { get; }
 
-        public MerchPack(List<MerchItem> pack)
+        public MerchType Type { get; }
+
+        public MerchPack(List<MerchItem> pack, MerchType type)
         {
             Pack = pack;
+            Type = type;
         }
     }
 }
