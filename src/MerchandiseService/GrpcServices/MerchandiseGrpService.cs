@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Grpc.Core;
+using MediatR;
 using Merchandise.Grpc;
+using MerchandiseService.Infrastructure.Commands;
 using MerchandiseService.Services.Interfaces;
 
 namespace MerchandiseService.GrpcServices
@@ -8,16 +10,18 @@ namespace MerchandiseService.GrpcServices
     public class MerchandiseGrpService : MerchandiseGrpc.MerchandiseGrpcBase
     {
         private readonly IMerchandiseBusinessService _merchandiseBusinessService;
+        private readonly IMediator _mediator;
 
-        public MerchandiseGrpService(IMerchandiseBusinessService merchandiseBusinessService)
+        public MerchandiseGrpService(IMerchandiseBusinessService merchandiseBusinessService, IMediator mediator)
         {
             _merchandiseBusinessService = merchandiseBusinessService;
+            _mediator = mediator;
         }
 
         public override async Task<GetEmployeeMerchInfoResponse> GetEmployeeMerchInfo(GetEmployeeMerchInfoRequest request, ServerCallContext context)
         {
-            var merchInfo = await
-                _merchandiseBusinessService.GetEmployeeMerchInfoAsync(request.EmployeeId, context.CancellationToken);
+            var command = new EmployeeMerchPackInfoCommand(request.EmployeeId);
+            var merchInfo = await _mediator.Send(command);
             return new GetEmployeeMerchInfoResponse
             {
                 

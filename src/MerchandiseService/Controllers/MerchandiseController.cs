@@ -16,12 +16,10 @@ namespace MerchandiseService.Controllers
     [Route("v1/api/merchs")]
     public class MerchandiseController : ControllerBase
     {
-        private readonly IMerchandiseBusinessService _merchandiseBusinessService;
         private readonly IMediator _mediator;
 
-        public MerchandiseController(IMerchandiseBusinessService merchandiseBusinessService, IMediator mediator)
+        public MerchandiseController(IMediator mediator)
         {
-            _merchandiseBusinessService = merchandiseBusinessService;
             _mediator = mediator;
         }
 
@@ -29,14 +27,15 @@ namespace MerchandiseService.Controllers
         public async Task<IActionResult>GetEmployeeMerchInfoAsync(int employeeId, CancellationToken token)
         {
             var command = new EmployeeMerchPackInfoCommand(employeeId);
-            var merchInfo = await _mediator.Send(command);
+            var merchInfo = await _mediator.Send(command, token);
             return Ok(merchInfo);
         }
 
-        [HttpGet("{employeeId:long}/{merchType:long}")]
-        public async Task<IActionResult> GetMerchAsync(long employeeId, long merchType, CancellationToken token)
+        [HttpGet("{employeeId:long}/{merchType:int}")]
+        public async Task<IActionResult> GetMerchAsync(int employeeId, long merchType, CancellationToken token)
         {
-            var result = await _merchandiseBusinessService.GetMerchAsync(employeeId, merchType, token); 
+            var command = new EmployeeMerchPackInfoCommand(employeeId);
+            var result = await _mediator.Send(command, token); 
             return Ok(result);
         }
     }

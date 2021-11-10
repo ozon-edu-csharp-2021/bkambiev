@@ -5,12 +5,12 @@ namespace MerchandiseService.Domain.AggregationModels.MerchItemAggregate
     public class MerchItem : Entity
     {
         public Sku Sku { get; }
-        public Name Name { get; }
-        public Item ItemType { get; }
+        public string Name { get; }
+        public ItemType ItemType { get; }
         public ClothingSize ClothingSize { get; }
-        public Tag Tag { get; }
+        public string Tag { get; }
 
-        public MerchItem(Sku sku, Name name, Item itemType, ClothingSize clothingSize, Tag tag)
+        public MerchItem(Sku sku, string name, ItemType itemType, ClothingSize clothingSize, string tag)
         {
             Sku = sku;
             Name = name;
