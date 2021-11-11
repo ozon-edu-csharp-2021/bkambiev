@@ -21,7 +21,7 @@ namespace MerchandiseService.GrpcServices
         public override async Task<GetEmployeeMerchInfoResponse> GetEmployeeMerchInfo(GetEmployeeMerchInfoRequest request, ServerCallContext context)
         {
             var command = new EmployeeMerchPackInfoCommand(request.EmployeeId);
-            var merchInfo = await _mediator.Send(command);
+            var merchInfo = await _mediator.Send(command, context.CancellationToken);
             return new GetEmployeeMerchInfoResponse
             {
                 
@@ -30,11 +30,12 @@ namespace MerchandiseService.GrpcServices
 
         public override async Task<GetMerchResponse> GetMerch(GetMerchRequest request, ServerCallContext context)
         {
-            var resultGetMerch = await
-                _merchandiseBusinessService.GetMerchAsync(request.EmployeeId, request.MerchType, context.CancellationToken);
+            //var resultGetMerch = await _merchandiseBusinessService.GetMerchAsync(request.EmployeeId, request.MerchType, context.CancellationToken);
+            var command = new GetMerchPackCommand(request.EmployeeId, request.MerchType);
+            int resultGetMerch = await _mediator.Send(command, context.CancellationToken);
             return new GetMerchResponse
             {
-                Result = resultGetMerch
+                Result = resultGetMerch != 0
             };
         }
     }

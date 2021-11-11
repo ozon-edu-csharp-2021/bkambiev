@@ -6,7 +6,7 @@ using MerchandiseService.Infrastructure.Commands;
 
 namespace MerchandiseService.Infrastructure.Handlers
 {
-    public class GetMerchPackHandler : IRequestHandler<GetMerchPackCommand, MerchPack>
+    public class GetMerchPackHandler : IRequestHandler<GetMerchPackCommand, int>
     {
         private readonly IMerchPackRepository _merchPackRepository;
 
@@ -15,10 +15,10 @@ namespace MerchandiseService.Infrastructure.Handlers
             _merchPackRepository = merchPackRepository;
         }
 
-        public Task<MerchPack> Handle(GetMerchPackCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(GetMerchPackCommand request, CancellationToken token)
         {
-            
-            throw new System.NotImplementedException();
+            int requestId = await _merchPackRepository.GetMerchPack(request.EmployeeId, request.MerchTypeId, token);
+            return requestId;
         }
     }
 }

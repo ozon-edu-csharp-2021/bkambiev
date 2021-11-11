@@ -4,13 +4,15 @@ using MerchandiseService.Domain.AggregationModels.MerchPackAggregate;
 
 namespace MerchandiseService.Infrastructure.Commands
 {
-    public class GetMerchPackCommand : IRequest<MerchPack>
+    public class GetMerchPackCommand : IRequest<int>
     {
-        public Employee Employee { get; }
+        public int EmployeeId { get; }
 
-        public GetMerchPackCommand(Employee employee)
+        public int MerchTypeId { get; }
+        public GetMerchPackCommand(int employeeId, int merchTypeId)
         {
-            Employee = employee;
+            EmployeeId = employeeId;
+            MerchTypeId = merchTypeId;
         }
     }
 }

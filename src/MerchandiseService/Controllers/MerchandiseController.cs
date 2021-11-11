@@ -23,7 +23,7 @@ namespace MerchandiseService.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{employeeId:long}")]
+        [HttpGet("{employeeId:int}")]
         public async Task<IActionResult>GetEmployeeMerchInfoAsync(int employeeId, CancellationToken token)
         {
             var command = new EmployeeMerchPackInfoCommand(employeeId);
@@ -31,10 +31,10 @@ namespace MerchandiseService.Controllers
             return Ok(merchInfo);
         }
 
-        [HttpGet("{employeeId:long}/{merchType:int}")]
-        public async Task<IActionResult> GetMerchAsync(int employeeId, long merchType, CancellationToken token)
+        [HttpGet("{employeeId:long}/{merchTypeId:int}")]
+        public async Task<IActionResult> GetMerchPackAsync(int employeeId, int merchTypeId, CancellationToken token)
         {
-            var command = new EmployeeMerchPackInfoCommand(employeeId);
+            var command = new GetMerchPackCommand(employeeId, merchTypeId);
             var result = await _mediator.Send(command, token); 
             return Ok(result);
         }

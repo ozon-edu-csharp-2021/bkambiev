@@ -19,7 +19,7 @@ message GetEmployeeMerchInfoResponse {
 
 message GetMerchRequest {
   int32 employee_id = 1;
-  int64 merch_type = 2;
+  int32 merch_type = 2;
 }
 
 message GetMerchResponse {
