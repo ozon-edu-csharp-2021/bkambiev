@@ -5,7 +5,7 @@ package Merchandise;
 service MerchandiseGrpc {
   
   rpc GetEmployeeMerchInfo(GetEmployeeMerchInfoRequest) returns (GetEmployeeMerchInfoResponse);
-  rpc GetMerch(GetMerchRequest) returns (GetMerchResponse);
+  rpc GetMerchPack(GetMerchRequest) returns (GetMerchResponse);
   
 }
 
@@ -23,5 +23,5 @@ message GetMerchRequest {
 }
 
 message GetMerchResponse {
-  bool result = 1;
+  int32 result = 1;
 }

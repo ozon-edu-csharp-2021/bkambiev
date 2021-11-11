@@ -9,9 +9,9 @@ namespace MerchandiseService.HttpClients
 {
     public interface IMerchandiseHttpClient
     {
-        Task<ItemResponse> GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token);
+        Task<ItemResponse> GetEmployeeMerchInfoAsync(int employeeId, CancellationToken token);
 
-        Task<bool> GetMerchAsync(long employeeId, long merchType, CancellationToken token);
+        Task<int> GetMerchAsync(int employeeId, int merchType, CancellationToken token);
 
     }
     
@@ -24,14 +24,14 @@ namespace MerchandiseService.HttpClients
             _httpClient = httpClient;
         }
 
-        public async Task<ItemResponse> GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token)
+        public async Task<ItemResponse> GetEmployeeMerchInfoAsync(int employeeId, CancellationToken token)
         {
             return await ResponeHandler<ItemResponse>($"v1/api/merchs/{employeeId}", token);
         }
         
-        public async Task<bool> GetMerchAsync(long employeeId, long merchType, CancellationToken token)
+        public async Task<int> GetMerchAsync(int employeeId, int merchType, CancellationToken token)
         {
-            return await ResponeHandler<bool>($"v1/api/merchs/{employeeId}/{merchType}", token);
+            return await ResponeHandler<int>($"v1/api/merchs/{employeeId}/{merchType}", token);
         }
 
         private async Task<T> ResponeHandler<T>(string endpoint, CancellationToken token)

@@ -6,7 +6,6 @@ using CSharpCourse.Core.Lib.Enums;
 using MediatR;
 using MerchandiseService.Infrastructure.Commands;
 using MerchandiseService.Models;
-using MerchandiseService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MerchandiseService.Controllers

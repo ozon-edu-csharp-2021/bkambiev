@@ -6,8 +6,6 @@ using MerchandiseService.GrpcServices;
 using MerchandiseService.Infrastructure.Extensions;
 using MerchandiseService.Infrastructure.Interceptors;
 using MerchandiseService.Infrastructure.Middlewares;
-using MerchandiseService.Services;
-using MerchandiseService.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
