@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MerchandiseService.Domain.AggregationModels.MerchItemAggregate;
 using MerchandiseService.Domain.Models;
@@ -16,6 +17,20 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackAggregate
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is MerchPackSet set)
+            {
+                return Value.SetEquals(set.Value);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), Value);
         }
     }
 }
