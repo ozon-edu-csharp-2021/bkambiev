@@ -11,10 +11,13 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackAggregate
 
         public MerchType Type { get; }
 
-        public MerchPack(List<MerchItem> pack, MerchType type)
+        public StatusType StatusType { get; }
+
+        public MerchPack(List<MerchItem> pack, MerchType type, StatusType statusType)
         {
             Pack = pack;
             Type = type;
+            StatusType = statusType;
         }
     }
 }

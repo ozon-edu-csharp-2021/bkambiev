@@ -1,8 +1,8 @@
 using CSharpCourse.Core.Lib.Enums;
 using MerchandiseService.Domain.Models;
 
-namespace MerchandiseService.Domain.AggregationModels.EmployeeAggregate
-{
+namespace MerchandiseService.Domain.AggregationModels.MerchPackAggregate
+{ 
     public class StatusType : Enumeration
     {
         public static StatusType Welcome = new(1, nameof(Welcome));
