@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using MerchandiseService.Domain.AggregationModels.MerchItemAggregate;
 using MerchandiseService.Domain.Models;
 
 namespace MerchandiseService.Domain.AggregationModels.MerchPackAggregate

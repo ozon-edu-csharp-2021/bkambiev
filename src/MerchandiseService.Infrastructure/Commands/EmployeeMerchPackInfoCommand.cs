@@ -1,6 +1,5 @@
 using CSharpCourse.Core.Lib.Enums;
 using MediatR;
-using MerchandiseService.Domain.AggregationModels.EmployeeAggregate;
 
 namespace MerchandiseService.Infrastructure.Commands
 {

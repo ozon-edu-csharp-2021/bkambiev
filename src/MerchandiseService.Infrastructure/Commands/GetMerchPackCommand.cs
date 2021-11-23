@@ -1,6 +1,4 @@
 using MediatR;
-using MerchandiseService.Domain.AggregationModels.EmployeeAggregate;
-using MerchandiseService.Domain.AggregationModels.MerchPackAggregate;
 
 namespace MerchandiseService.Infrastructure.Commands
 {

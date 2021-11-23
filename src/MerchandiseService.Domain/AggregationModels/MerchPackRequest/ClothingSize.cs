@@ -1,6 +1,6 @@
 using MerchandiseService.Domain.Models;
 
-namespace MerchandiseService.Domain.AggregationModels.MerchItemAggregate
+namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
 {
     public class ClothingSize : Enumeration
     {

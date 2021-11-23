@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using MerchandiseService.Domain.Models;
 
-namespace MerchandiseService.Domain.AggregationModels.EmployeeAggregate
+namespace MerchandiseService.Domain.AggregationModels.MerchPackAggregate
 {
-    public class Email : ValueObject
+    public class Sku : ValueObject
     {
-        public string Value { get; }
+        public long Value { get; }
 
-        public Email(string value)
+        public Sku(long value)
         {
             Value = value;
         }
