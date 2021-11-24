@@ -13,11 +13,11 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
 
         public static MerchPackRequestStatus New = new(1, "new");
 
-        public static MerchPackRequestStatus Processing = new(1, "processing");
+        public static MerchPackRequestStatus Processing = new(2, "processing");
 
-        public static MerchPackRequestStatus Done = new(1, "done");
+        public static MerchPackRequestStatus Done = new(3, "done");
 
-        public static MerchPackRequestStatus Decline = new(1, "decline");
+        public static MerchPackRequestStatus Decline = new(4, "decline");
 
 
         public MerchPackRequestStatus(int id, string name) : base(id, name)
