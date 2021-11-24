@@ -7,8 +7,9 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
     {
         public Email Email { get; }
 
-        public Employee(Email email)
+        public Employee(int id, Email email)
         {
+            Id = id;
             Email = email;
         }
     }

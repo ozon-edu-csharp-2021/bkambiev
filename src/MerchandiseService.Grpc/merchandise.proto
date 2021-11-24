@@ -18,8 +18,9 @@ message GetEmployeeMerchInfoResponse {
 }
 
 message GetMerchRequest {
-  int32 employee_id = 1;
-  int32 merch_type = 2;
+  
+  string requeststring = 1;
+  
 }
 
 message GetMerchResponse {

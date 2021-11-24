@@ -1,8 +1,12 @@
+using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Grpc.Core;
 using MediatR;
 using Merchandise.Grpc;
+using MerchandiseService.Domain.AggregationModels.MerchPackRequest;
 using MerchandiseService.Infrastructure.Commands;
+using MerchandiseService.Models;
 
 namespace MerchandiseService.GrpcServices
 {
@@ -27,7 +31,15 @@ namespace MerchandiseService.GrpcServices
 
         public override async Task<GetMerchResponse> GetMerchPack(GetMerchRequest request, ServerCallContext context)
         {
-            var command = new GetMerchPackCommand(request.EmployeeId, request.MerchType);
+            GetMerchRequestHttp getMerchRequestHttp = JsonSerializer.Deserialize<GetMerchRequestHttp>(request.Requeststring);
+            MerchPackRequest merchPackRequest = new MerchPackRequest(
+                getMerchRequestHttp.Employee,
+                getMerchRequestHttp.Email,
+                getMerchRequestHttp.MerchType,
+                DateTimeOffset.Now,
+                null
+                );
+            var command = new GetMerchPackCommand(merchPackRequest);
             int resultGetMerch = await _mediator.Send(command, context.CancellationToken);
             return new GetMerchResponse
             {

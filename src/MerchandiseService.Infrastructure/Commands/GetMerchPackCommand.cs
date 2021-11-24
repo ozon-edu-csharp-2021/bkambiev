@@ -1,16 +1,15 @@
 using MediatR;
+using MerchandiseService.Domain.AggregationModels.MerchPackRequest;
 
 namespace MerchandiseService.Infrastructure.Commands
 {
     public class GetMerchPackCommand : IRequest<int>
     {
-        public int EmployeeId { get; }
+        public MerchPackRequest MerchPackRequest { get; }
 
-        public int MerchTypeId { get; }
-        public GetMerchPackCommand(int employeeId, int merchTypeId)
+        public GetMerchPackCommand(MerchPackRequest merchPackRequest)
         {
-            EmployeeId = employeeId;
-            MerchTypeId = merchTypeId;
+            MerchPackRequest = merchPackRequest;
         }
     }
 }

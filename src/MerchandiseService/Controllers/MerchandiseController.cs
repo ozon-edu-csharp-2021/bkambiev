@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using CSharpCourse.Core.Lib.Enums;
@@ -7,6 +8,7 @@ using MediatR;
 using MerchandiseService.Infrastructure.Commands;
 using MerchandiseService.Models;
 using Microsoft.AspNetCore.Mvc;
+using MerchandiseService.Domain.AggregationModels.MerchPackRequest;
 
 namespace MerchandiseService.Controllers
 {
@@ -30,10 +32,19 @@ namespace MerchandiseService.Controllers
             return Ok(merchInfo);
         }
 
-        [HttpGet("{employeeId:long}/{merchTypeId:int}")]
-        public async Task<IActionResult> GetMerchPackAsync(int employeeId, int merchTypeId, CancellationToken token)
+        [HttpGet("getmerch/{requeststring}")]
+        public async Task<IActionResult> GetMerchPackAsync(string requeststring, CancellationToken token)
         {
-            var command = new GetMerchPackCommand(employeeId, merchTypeId);
+            GetMerchRequestHttp getMerchRequestHttp = JsonSerializer.Deserialize<GetMerchRequestHttp>(requeststring);
+            MerchPackRequest merchPackRequest = new MerchPackRequest(
+                getMerchRequestHttp.Employee,
+                getMerchRequestHttp.Email,
+                getMerchRequestHttp.MerchType,
+                DateTimeOffset.Now,
+                null
+                );
+            var command = new GetMerchPackCommand(merchPackRequest);
+            
             var result = await _mediator.Send(command, token); 
             return Ok(result);
         }

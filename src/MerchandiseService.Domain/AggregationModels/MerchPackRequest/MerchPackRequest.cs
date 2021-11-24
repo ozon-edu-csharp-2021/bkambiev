@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
 {
-    internal class MerchPackRequest : Entity
+    public class MerchPackRequest : Entity
     {
         public MerchPackRequestStatus Status { get; private set; }
 
@@ -20,15 +20,21 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
 
         public DateTimeOffset? CLosedDate { get; private set; }
 
-        public MerchPackRequest(Employee employee,
-            MerchType merchPackType, DateTimeOffset createdDate,
-            DateTimeOffset? cLosedDate, MerchPackRequestStatus status)
+        public Email Email { get; }
+
+        public MerchPackRequest(
+            Employee employee,
+            Email email,
+            MerchType merchPackType,
+            DateTimeOffset createdDate,
+            DateTimeOffset? cLosedDate)
         {
-            Status = status;
+            Status = MerchPackRequestStatus.New;
             Employee = employee;
             MerchPackType = merchPackType;
             CreatedDate = createdDate;
             CLosedDate = cLosedDate;
+            Email = email;
         }
 
         public void SetClosedDate()
