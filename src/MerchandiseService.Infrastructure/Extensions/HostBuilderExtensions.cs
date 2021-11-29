@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using MerchandiseService.Domain.AggregationModels.MerchPackAggregate;
 using MerchandiseService.Infrastructure.Filters;
 using MerchandiseService.Infrastructure.StartupFilters;
 using Microsoft.AspNetCore.Hosting;
@@ -21,13 +22,6 @@ namespace MerchandiseService.Infrastructure.Extensions
                 services.AddSwaggerGen(options =>
                 {
                     options.SwaggerDoc("v1", new OpenApiInfo() {Title = "MerchandiseService", Version = "v1"});
-                    
-                    options.CustomSchemaIds(x => x.FullName);
-
-                    var xmlFileName = Assembly.GetExecutingAssembly().GetName().Name + ".xml";
-                    var xmlFilePath = Path.Combine(AppContext.BaseDirectory, xmlFileName);
-                    
-                    options.IncludeXmlComments(xmlFilePath);
                 });
                 services.AddControllers(options => options.Filters.Add<GlobalExceptionFilter>());
             });

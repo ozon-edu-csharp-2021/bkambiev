@@ -20,11 +20,9 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
 
         public DateTimeOffset? CLosedDate { get; private set; }
 
-        public Email Email { get; }
 
         public MerchPackRequest(
             Employee employee,
-            Email email,
             MerchType merchPackType,
             DateTimeOffset createdDate,
             DateTimeOffset? cLosedDate)
@@ -34,7 +32,6 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
             MerchPackType = merchPackType;
             CreatedDate = createdDate;
             CLosedDate = cLosedDate;
-            Email = email;
         }
 
         public void SetClosedDate()

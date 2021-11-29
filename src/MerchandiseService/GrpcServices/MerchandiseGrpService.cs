@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CSharpCourse.Core.Lib.Enums;
 using Grpc.Core;
 using MediatR;
 using Merchandise.Grpc;
@@ -31,11 +32,9 @@ namespace MerchandiseService.GrpcServices
 
         public override async Task<GetMerchResponse> GetMerchPack(GetMerchRequest request, ServerCallContext context)
         {
-            GetMerchRequestHttp getMerchRequestHttp = JsonSerializer.Deserialize<GetMerchRequestHttp>(request.Requeststring);
             MerchPackRequest merchPackRequest = new MerchPackRequest(
-                getMerchRequestHttp.Employee,
-                getMerchRequestHttp.Email,
-                getMerchRequestHttp.MerchType,
+                new Employee(request.EmployeeId),
+                (MerchType)(request.MerchTypeId),
                 DateTimeOffset.Now,
                 null
                 );

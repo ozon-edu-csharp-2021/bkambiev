@@ -6,17 +6,15 @@ namespace MerchandiseService.Models
 {
     public class GetMerchRequestHttp
     {
-        public Employee Employee { get; }
-        public MerchType MerchType { get; }
-        public Email Email { get; }
-        public StatusType StatusType { get; }
+        public int EmployeeId { get; }
+        public int MerchTypeId { get; }
+        public int StatusTypeId { get; }
 
-        public GetMerchRequestHttp(Employee employee, MerchType merchType, Email email, StatusType statusType)
+        public GetMerchRequestHttp(int employeeId, int merchTypeId, int statusTypeId)
         {
-            Employee = employee;
-            MerchType = merchType;
-            Email = email;
-            StatusType = statusType;
+            EmployeeId = employeeId;
+            MerchTypeId = merchTypeId;
+            StatusTypeId = statusTypeId;
         }
     }
 }

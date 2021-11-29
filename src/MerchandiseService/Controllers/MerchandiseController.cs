@@ -32,14 +32,12 @@ namespace MerchandiseService.Controllers
             return Ok(merchInfo);
         }
 
-        [HttpGet("getmerch/{requeststring}")]
-        public async Task<IActionResult> GetMerchPackAsync(string requeststring, CancellationToken token)
+        [HttpGet("getmerch/{requestBody}")]
+        public async Task<IActionResult> GetMerchPackAsync(GetMerchRequestHttp requestBody, CancellationToken token)
         {
-            GetMerchRequestHttp getMerchRequestHttp = JsonSerializer.Deserialize<GetMerchRequestHttp>(requeststring);
             MerchPackRequest merchPackRequest = new MerchPackRequest(
-                getMerchRequestHttp.Employee,
-                getMerchRequestHttp.Email,
-                getMerchRequestHttp.MerchType,
+                new Employee(requestBody.EmployeeId),
+                (MerchType)(requestBody.MerchTypeId),
                 DateTimeOffset.Now,
                 null
                 );

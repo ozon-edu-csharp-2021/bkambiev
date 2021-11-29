@@ -5,12 +5,10 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
 {
     public class Employee : Entity
     {
-        public Email Email { get; }
 
-        public Employee(int id, Email email)
+        public Employee(int id)
         {
             Id = id;
-            Email = email;
         }
     }
 }
