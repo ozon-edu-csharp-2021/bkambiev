@@ -30,13 +30,10 @@ namespace MerchandiseService.Infrastructure.Middlewares
             {
                 try
                 {
-                    if (context.Request.ContentType is not null)
-                    {
-                        if ((context.Request.Headers.Count > 0) && (context.Request.ContentType.Contains(StringConsts.CONTENTTYPE_GRPC)))
+                     if ((context.Request.Headers.Count > 0) && (context.Request.ContentType is not null) && (context.Request.ContentType.Contains(StringConsts.CONTENTTYPE_GRPC)))
                         {
                             _logger.LogInformation($"Request logged. Route: {context.Request.Path} Headers: {JsonSerializer.Serialize(context.Request.Headers)}");
                         }
-                    }
                 }
                 catch (Exception e)
                 {
