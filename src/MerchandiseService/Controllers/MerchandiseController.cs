@@ -39,7 +39,8 @@ namespace MerchandiseService.Controllers
                 new Employee(requestBody.EmployeeId),
                 (MerchType)(requestBody.MerchTypeId),
                 DateTimeOffset.Now,
-                null
+                null,
+                MerchPackRequestStatus.New
                 );
             var command = new GetMerchPackCommand(merchPackRequest);
             

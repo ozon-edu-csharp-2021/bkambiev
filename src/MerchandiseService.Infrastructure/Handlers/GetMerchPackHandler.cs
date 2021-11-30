@@ -17,7 +17,13 @@ namespace MerchandiseService.Infrastructure.Handlers
 
         public async Task<int> Handle(GetMerchPackCommand request, CancellationToken token)
         {
-            int requestId = await _merchPackRepository.GetMerchPack(request.MerchPackRequest.Employee.Id, (int)request.MerchPackRequest.MerchPackType, token);
+            bool haveMerchPack = await _merchPackRepository.HaveEmployeeMerchPack(request.MerchPackRequest.Employee.Id, request.MerchPackRequest.MerchPackType);
+            int requestId = 0;
+            if (!haveMerchPack)
+            {
+                requestId = await _merchPackRepository.GetMerchPack(request.MerchPackRequest.Employee.Id, request.MerchPackRequest.MerchPackType, token);
+            }
+            
             return requestId;
         }
     }

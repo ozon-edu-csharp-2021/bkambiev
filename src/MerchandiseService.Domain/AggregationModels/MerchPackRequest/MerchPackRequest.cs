@@ -20,14 +20,17 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
 
         public DateTimeOffset? CLosedDate { get; private set; }
 
+        
+
 
         public MerchPackRequest(
             Employee employee,
             MerchType merchPackType,
             DateTimeOffset createdDate,
-            DateTimeOffset? cLosedDate)
+            DateTimeOffset? cLosedDate,
+            MerchPackRequestStatus status)
         {
-            Status = MerchPackRequestStatus.New;
+            Status = status;
             Employee = employee;
             MerchPackType = merchPackType;
             CreatedDate = createdDate;
@@ -39,30 +42,21 @@ namespace MerchandiseService.Domain.AggregationModels.MerchPackRequest
             CLosedDate = DateTimeOffset.Now;
         }
 
-        public void NewRequest()
-        {
-            Status = MerchPackRequestStatus.New;
-        }
-
         public void Processing()
         {
-            if (Status == MerchPackRequestStatus.New)
-            {
-                Status = MerchPackRequestStatus.Processing;
-            }
+            Status = MerchPackRequestStatus.Processing;
         }
 
         public void Done()
         {
-            if (Status == MerchPackRequestStatus.Processing)
-            {
-                Status = MerchPackRequestStatus.Done;
-            }
+            Status = MerchPackRequestStatus.Done;
+            SetClosedDate();
         }
 
         public void Decline()
         {
             Status = MerchPackRequestStatus.Decline;
+            SetClosedDate();
         }
     }
 }

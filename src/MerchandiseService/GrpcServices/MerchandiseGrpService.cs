@@ -36,7 +36,8 @@ namespace MerchandiseService.GrpcServices
                 new Employee(request.EmployeeId),
                 (MerchType)(request.MerchTypeId),
                 DateTimeOffset.Now,
-                null
+                null,
+                MerchPackRequestStatus.New
                 );
             var command = new GetMerchPackCommand(merchPackRequest);
             int resultGetMerch = await _mediator.Send(command, context.CancellationToken);
