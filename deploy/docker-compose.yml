@@ -30,3 +30,14 @@ services:
     hostname: merchandise-service
     ports:
       - "8085:80"
+
+  merchandise-db:
+    image: postgres:latest
+    ports:
+      - "5427:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: merchDBPassword
+      POSTGRES_DB: merch-db
+    command: "-c log_statement=all"
+  

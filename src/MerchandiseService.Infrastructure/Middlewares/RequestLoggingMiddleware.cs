@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using MerchandiseService.Infrastructure.Consts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -29,10 +30,10 @@ namespace MerchandiseService.Infrastructure.Middlewares
             {
                 try
                 {
-                    if ((context.Request.Headers.Count > 0) && (context.Request.Headers["Content-Type"] != "application/grpc"))
-                    {
-                        _logger.LogInformation($"Request logged. Route: {context.Request.Path} Headers: {JsonSerializer.Serialize(context.Request.Headers)}");
-                    }
+                     if ((context.Request.Headers.Count > 0) && (context.Request.ContentType is not null) && (context.Request.ContentType.Contains(StringConsts.CONTENTTYPE_GRPC)))
+                        {
+                            _logger.LogInformation($"Request logged. Route: {context.Request.Path} Headers: {JsonSerializer.Serialize(context.Request.Headers)}");
+                        }
                 }
                 catch (Exception e)
                 {

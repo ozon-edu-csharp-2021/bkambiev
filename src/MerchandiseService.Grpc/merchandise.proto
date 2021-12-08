@@ -5,12 +5,12 @@ package Merchandise;
 service MerchandiseGrpc {
   
   rpc GetEmployeeMerchInfo(GetEmployeeMerchInfoRequest) returns (GetEmployeeMerchInfoResponse);
-  rpc GetMerch(GetMerchRequest) returns (GetMerchResponse);
+  rpc GetMerchPack(GetMerchRequest) returns (GetMerchResponse);
   
 }
 
 message GetEmployeeMerchInfoRequest {
-  int64 employee_id = 1;
+  int32 employee_id = 1;
 }
 
 message GetEmployeeMerchInfoResponse {
@@ -18,10 +18,12 @@ message GetEmployeeMerchInfoResponse {
 }
 
 message GetMerchRequest {
-  int64 employee_id = 1;
-  int64 merch_type = 2;
+  
+  int32 employee_id = 1;
+  int32 statys_type_id = 2;
+  int32 merch_type_id = 4;
 }
 
 message GetMerchResponse {
-  bool result = 1;
+  int32 result = 1;
 }

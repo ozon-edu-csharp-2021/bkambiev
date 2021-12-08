@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using CSharpCourse.Core.Lib.Enums;
+using MediatR;
+using MerchandiseService.Infrastructure.Commands;
 using MerchandiseService.Models;
-using MerchandiseService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using MerchandiseService.Domain.AggregationModels.MerchPackRequest;
 
 namespace MerchandiseService.Controllers
 {
@@ -14,31 +17,34 @@ namespace MerchandiseService.Controllers
     [Route("v1/api/merchs")]
     public class MerchandiseController : ControllerBase
     {
-        private readonly IMerchandiseBusinessService _merchandiseBusinessService;
+        private readonly IMediator _mediator;
 
-        public MerchandiseController(IMerchandiseBusinessService merchandiseBusinessService)
+        public MerchandiseController(IMediator mediator)
         {
-            _merchandiseBusinessService = merchandiseBusinessService;
+            _mediator = mediator;
         }
 
-        [HttpGet("{employeeId:long}")]
-        public async Task<IActionResult>GetEmployeeMerchInfoAsync(long employeeId, CancellationToken token)
+        [HttpGet("{employeeId:int}")]
+        public async Task<IActionResult>GetEmployeeMerchInfoAsync(int employeeId, CancellationToken token)
         {
-            try
-            {
-                var merchInfo = await _merchandiseBusinessService.GetEmployeeMerchInfoAsync(employeeId, token);
-                return Ok(merchInfo);
-            }
-            catch (Exception e)
-            {
-                return NotFound(e.Message);
-            }
+            var command = new EmployeeMerchPackInfoCommand(employeeId);
+            var merchInfo = await _mediator.Send(command, token);
+            return Ok(merchInfo);
         }
 
-        [HttpGet("{employeeId:long}/{merchType:long}")]
-        public async Task<IActionResult> GetMerchAsync(long employeeId, long merchType, CancellationToken token)
+        [HttpGet("getmerch/{requestBody}")]
+        public async Task<IActionResult> GetMerchPackAsync(GetMerchRequestHttp requestBody, CancellationToken token)
         {
-            var result = await _merchandiseBusinessService.GetMerchAsync(employeeId, merchType, token); 
+            MerchPackRequest merchPackRequest = new MerchPackRequest(
+                new Employee(requestBody.EmployeeId),
+                (MerchType)(requestBody.MerchTypeId),
+                DateTimeOffset.Now,
+                null,
+                MerchPackRequestStatus.New
+                );
+            var command = new GetMerchPackCommand(merchPackRequest);
+            
+            var result = await _mediator.Send(command, token); 
             return Ok(result);
         }
     }

@@ -15,13 +15,13 @@ namespace MerchandiseService.Infrastructure.Interceptors
             _logger = logger;
         }
         
-        public override Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request,
+        public async override Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request,
             ServerCallContext context,
             UnaryServerMethod<TRequest, TResponse> continuation)
         {
             var requestJson = JsonSerializer.Serialize(request);
             
-            var response = base.UnaryServerHandler(request, context, continuation);
+            var response = await continuation(request, context);
 
             var responseJson = JsonSerializer.Serialize(response);
             _logger.LogInformation($"Grpc log. Request: {requestJson} Response: {responseJson}");

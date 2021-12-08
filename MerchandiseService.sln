@@ -5,6 +5,7 @@ ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	README.md = README.md
 	dockerfile = dockerfile
+	Bounded Context Canvas.drawio = Bounded Context Canvas.drawio
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F282C41-1453-4D5D-B53C-8549B0A186EE}"
@@ -26,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseService.HttpMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseService.Infrastructure", "src\MerchandiseService.Infrastructure\MerchandiseService.Infrastructure.csproj", "{FD6C8D77-8A0E-423A-9E8D-41C3DFA6A969}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseService.Domain", "src\MerchandiseService.Domain\MerchandiseService.Domain.csproj", "{DA407E3B-1963-485F-89B5-97A7BD62954B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +40,7 @@ Global
 		{512ADBBF-6BFB-4D31-9DB2-0607C9ED191E} = {3F282C41-1453-4D5D-B53C-8549B0A186EE}
 		{38FDC9D9-B710-4334-9E43-B6ABBA730F46} = {3F282C41-1453-4D5D-B53C-8549B0A186EE}
 		{FD6C8D77-8A0E-423A-9E8D-41C3DFA6A969} = {3F282C41-1453-4D5D-B53C-8549B0A186EE}
+		{DA407E3B-1963-485F-89B5-97A7BD62954B} = {3F282C41-1453-4D5D-B53C-8549B0A186EE}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4E61B80E-2020-485A-A03E-EA714307C514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -59,5 +63,9 @@ Global
 		{FD6C8D77-8A0E-423A-9E8D-41C3DFA6A969}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD6C8D77-8A0E-423A-9E8D-41C3DFA6A969}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD6C8D77-8A0E-423A-9E8D-41C3DFA6A969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA407E3B-1963-485F-89B5-97A7BD62954B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA407E3B-1963-485F-89B5-97A7BD62954B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA407E3B-1963-485F-89B5-97A7BD62954B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA407E3B-1963-485F-89B5-97A7BD62954B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
